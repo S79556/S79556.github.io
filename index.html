@@ -6,7 +6,51 @@
     <title>Roslaila - Food Science Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        /* --- Color Palette & Font Setup --- */
+       /* --- Grid Sizing for Desktop (Wide View) --- */
+
+        .card-profile { 
+            grid-column: span 2; 
+            grid-row: span 2; 
+            justify-content: space-between; 
+            /* === START: New Background Image Properties for Profile Card === */
+            background-image: url('bg.jpg');
+            background-size: cover; /* Ensures the image covers the entire card area */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents the image from tiling */
+            color: var(--color-card-bg); /* Ensure text is readable against a darker image */
+            /* Optional: Add a subtle overlay for text readability */
+            position: relative;
+            z-index: 1; /* Ensures content is above the image layer */
+            /* === END: New Background Image Properties for Profile Card === */
+        }
+
+        /* If you use a background image, you might need an overlay for text readability */
+        .card-profile::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Dark semi-transparent overlay */
+            border-radius: var(--card-radius);
+            z-index: -1; /* Place the overlay behind the content but above the image */
+        }
+
+        /* Adjust text colors inside the card-profile for better visibility */
+        .card-profile h1,
+        .card-profile h2,
+        .card-profile p,
+        .card-profile h3,
+        .social-links a {
+            color: var(--color-card-bg) !important; /* Force white text */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Optional: text shadow for readability */
+        }
+        
+        .profile-details h2 {
+            /* Use a contrasting color (like the secondary accent) for the program name */
+            color: #ffcc00 !important; 
+        }
         :root {
             --color-background: #f0f2f5; /* Soft Grey Background */
             --color-card-bg: #ffffff; /* White Card Background */
@@ -54,12 +98,14 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            /* Theme Tweak 3: Added transition for hover effect */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
+        /* Theme Tweak 3: Subtle Scale Up Hover Effect */
         .card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.01); /* Scale up and lift slightly */
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
@@ -80,6 +126,7 @@
 
         .card-profile { grid-column: span 2; grid-row: span 2; justify-content: space-between; }
         .card-location { grid-column: span 1; grid-row: span 1; }
+        .card-reflection { grid-column: span 1; grid-row: span 1; } 
         .card-subjects { grid-column: span 1; grid-row: span 1; }
         .card-case-study { grid-column: span 2; }
         .card-hobby { grid-column: span 1; }
@@ -176,6 +223,19 @@
             color: var(--color-text-primary);
         }
 
+        /* Reflection Card specific styling */
+        .card-reflection {
+            background-color: var(--color-accent);
+            color: var(--color-card-bg);
+        }
+        .card-reflection h3 {
+            color: #ffcc00; /* Contrasting yellow for title */
+        }
+        .card-reflection p {
+            color: var(--color-card-bg);
+            font-weight: 300;
+        }
+        
         /* --- Mobile Responsiveness (Stacked Vertically) --- */
         @media (max-width: 768px) {
             .bento-grid {
@@ -188,7 +248,8 @@
             .card-subjects, 
             .card-case-study, 
             .card-hobby, 
-            .card-playlist {
+            .card-playlist,
+            .card-reflection {
                 grid-column: span 1;
                 grid-row: auto;
             }
@@ -216,25 +277,31 @@
         <div class="profile-details">
             <p style="color: var(--color-accent); font-size: 0.9rem; font-weight: 500; margin-bottom: 10px;">STUDENT PROFILE</p>
             <h1>Roslaila</h1>
-            <h2>Food Science, Year 2</h2>
+            <h2>Food Science, Year 1</h2>
             <p class="tagline">'Innovating food safety.'</p>
         </div>
         
         <div class="social-links">
             <h3>Social Links</h3>
-            <a href="#">LinkedIn</a>
-            <a href="#">GitHub</a>
-            <a href="#">UMT Portal</a>
+            <a href="https://www.linkedin.com”
+ target="_blank">LinkedIn</a>
+            <a href="https://github.com/S79556" target="_blank">GitHub</a>
+            <a href="#" target="_blank">UMT Portal</a>
         </div>
     </div>
     
     <div class="card card-location">
         <div class="location-details">
             <p class="campus">UMT, Kuala Nerus</p>
-            <p class="time">Sunday, December 14, 2025 at 2:53 PM +08</p>
+            <p class="time">Sunday, December 14, 2025 at 3:28 PM +08</p>
         </div>
     </div>
     
+    <div class="card card-reflection">
+        <h3>Why Food Tech Matters in Malaysia</h3>
+        <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
+    </div>
+
     <div class="card card-subjects">
         <h3>Core Subjects</h3>
         <ul class="subjects-list">
@@ -258,7 +325,7 @@
 
     <div class="card card-playlist">
         <h3>Study Flow Playlist</h3>
-        <p>Placeholder for an embedded music player or a link to a curated study playlist.</p>
+        <p><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4iZ4pt7kvcaH6Yo8UoZ4s2?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>.</p>
     </div>
 
 </div>
