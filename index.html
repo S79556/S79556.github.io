@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roslaila - Food Science Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* --- Color Palette & Font Setup --- */
+        :root {
+            --color-background: #f0f2f5; /* Soft Grey Background */
+            --color-card-bg: #ffffff; /* White Card Background */
+            --color-text-primary: #1e293b; /* Dark Slate Text */
+            --color-text-secondary: #64748b; /* Medium Grey Text */
+            --color-accent: #0077b6; /* Deep Ocean Blue (UMT Theme) */
+            --color-border: #e2e8f0; /* Light Grey Border */
+            --font-family: 'Inter', sans-serif;
+            --card-radius: 12px;
+            --gap: 20px;
+        }
+
+        /* --- Base Styles --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            padding: var(--gap);
+            min-height: 100vh;
+        }
+
+        /* --- Bento Grid Layout --- */
+        .bento-grid {
+            display: grid;
+            gap: var(--gap);
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Desktop Layout: 4 equal columns */
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+        }
+
+        /* --- Card Styles --- */
+        .card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--card-radius);
+            padding: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-accent);
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        /* --- Grid Sizing for Desktop (Wide View) --- */
+
+        .card-profile { grid-column: span 2; grid-row: span 2; justify-content: space-between; }
+        .card-location { grid-column: span 1; grid-row: span 1; }
+        .card-subjects { grid-column: span 1; grid-row: span 1; }
+        .card-case-study { grid-column: span 2; }
+        .card-hobby { grid-column: span 1; }
+        .card-playlist { grid-column: span 4; }
+        
+        /* --- Specific Content Styling --- */
+        
+        /* Profile Details */
+        .profile-details h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            color: var(--color-text-primary);
+        }
+        
+        .profile-details h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--color-accent);
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-style: italic;
+            font-weight: 500;
+            color: var(--color-text-primary);
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 15px;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: var(--color-accent);
+            text-decoration: underline;
+        }
+        
+        /* Subjects List */
+        .subjects-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .subjects-list li {
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--color-accent); 
+            transition: background-color 0.2s;
+        }
+
+        .subjects-list li:hover {
+            background-color: var(--color-accent);
+            color: var(--color-card-bg);
+        }
+
+        /* Location Card */
+        .location-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+        
+        .location-details .campus {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 4px;
+        }
+        
+        .location-details .time {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+        }
+        
+        /* Hobby Card */
+        .hobby-detail {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--color-text-primary);
+        }
+
+        /* --- Mobile Responsiveness (Stacked Vertically) --- */
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .card-profile, 
+            .card-location, 
+            .card-subjects, 
+            .card-case-study, 
+            .card-hobby, 
+            .card-playlist {
+                grid-column: span 1;
+                grid-row: auto;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .profile-details h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-details h2 {
+                font-size: 1.2rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="bento-grid">
+
+    <div class="card card-profile">
+        <div class="profile-details">
+            <p style="color: var(--color-accent); font-size: 0.9rem; font-weight: 500; margin-bottom: 10px;">STUDENT PROFILE</p>
+            <h1>Roslaila</h1>
+            <h2>Food Science, Year 2</h2>
+            <p class="tagline">'Innovating food safety.'</p>
+        </div>
+        
+        <div class="social-links">
+            <h3>Social Links</h3>
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub</a>
+            <a href="#">UMT Portal</a>
+        </div>
+    </div>
+    
+    <div class="card card-location">
+        <div class="location-details">
+            <p class="campus">UMT, Kuala Nerus</p>
+            <p class="time">Sunday, December 14, 2025 at 2:53 PM +08</p>
+        </div>
+    </div>
+    
+    <div class="card card-subjects">
+        <h3>Core Subjects</h3>
+        <ul class="subjects-list">
+            <li>Food Chemistry</li>
+            <li>Microbiology</li>
+            <li>Excel</li>
+            <li>Lab Analysis</li>
+        </ul>
+    </div>
+    
+    <div class="card card-case-study">
+        <h3>Current Case Study</h3>
+        <p style="font-weight: 600; color: var(--color-text-primary);">Starch Gelatinization in Local Kuih</p>
+        <p>Analyzing texture profiles of Kuih Lapis.</p>
+    </div>
+    
+    <div class="card card-hobby">
+        <h3>Campus Activity</h3>
+        <p class="hobby-detail">Evening walks at Pantai UMT.</p>
+    </div>
+
+    <div class="card card-playlist">
+        <h3>Study Flow Playlist</h3>
+        <p>Placeholder for an embedded music player or a link to a curated study playlist.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
