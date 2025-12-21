@@ -6,64 +6,18 @@
     <title>Roslaila - Food Science Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-       /* --- Grid Sizing for Desktop (Wide View) --- */
-
-        .card-profile { 
-            grid-column: span 2; 
-            grid-row: span 2; 
-            justify-content: space-between; 
-            /* === START: New Background Image Properties for Profile Card === */
-            background-image: url('bg.jpg');
-            background-size: cover; /* Ensures the image covers the entire card area */
-            background-position: center; /* Centers the image */
-            background-repeat: no-repeat; /* Prevents the image from tiling */
-            color: var(--color-card-bg); /* Ensure text is readable against a darker image */
-            /* Optional: Add a subtle overlay for text readability */
-            position: relative;
-            z-index: 1; /* Ensures content is above the image layer */
-            /* === END: New Background Image Properties for Profile Card === */
-        }
-
-        /* If you use a background image, you might need an overlay for text readability */
-        .card-profile::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Dark semi-transparent overlay */
-            border-radius: var(--card-radius);
-            z-index: -1; /* Place the overlay behind the content but above the image */
-        }
-
-        /* Adjust text colors inside the card-profile for better visibility */
-        .card-profile h1,
-        .card-profile h2,
-        .card-profile p,
-        .card-profile h3,
-        .social-links a {
-            color: var(--color-card-bg) !important; /* Force white text */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Optional: text shadow for readability */
-        }
-        
-        .profile-details h2 {
-            /* Use a contrasting color (like the secondary accent) for the program name */
-            color: #ffcc00 !important; 
-        }
         :root {
-            --color-background: #f0f2f5; /* Soft Grey Background */
-            --color-card-bg: #ffffff; /* White Card Background */
-            --color-text-primary: #1e293b; /* Dark Slate Text */
-            --color-text-secondary: #64748b; /* Medium Grey Text */
-            --color-accent: #0077b6; /* Deep Ocean Blue (UMT Theme) */
-            --color-border: #e2e8f0; /* Light Grey Border */
+            --color-background: #f0f2f5; 
+            --color-card-bg: #ffffff; 
+            --color-text-primary: #1e293b; 
+            --color-text-secondary: #64748b; 
+            --color-accent: #0077b6; 
+            --color-border: #e2e8f0; 
             --font-family: 'Inter', sans-serif;
             --card-radius: 12px;
             --gap: 20px;
         }
 
-        /* --- Base Styles --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -78,18 +32,15 @@
             min-height: 100vh;
         }
 
-        /* --- Bento Grid Layout --- */
         .bento-grid {
             display: grid;
             gap: var(--gap);
             max-width: 1200px;
             margin: 0 auto;
-            /* Desktop Layout: 4 equal columns */
             grid-template-columns: repeat(4, 1fr);
             grid-template-rows: auto;
         }
 
-        /* --- Card Styles --- */
         .card {
             background-color: var(--color-card-bg);
             border: 1px solid var(--color-border);
@@ -98,14 +49,12 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            /* Theme Tweak 3: Added transition for hover effect */
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
-        /* Theme Tweak 3: Subtle Scale Up Hover Effect */
         .card:hover {
-            transform: translateY(-2px) scale(1.01); /* Scale up and lift slightly */
+            transform: translateY(-2px) scale(1.01);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
@@ -122,151 +71,101 @@
             line-height: 1.5;
         }
 
-        /* --- Grid Sizing for Desktop (Wide View) --- */
+        /* Grid Sizing */
+        .card-profile { 
+            grid-column: span 2; 
+            grid-row: span 2; 
+            justify-content: space-between; 
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: var(--color-card-bg);
+            position: relative;
+            z-index: 1;
+        }
 
-        .card-profile { grid-column: span 2; grid-row: span 2; justify-content: space-between; }
+        .card-profile::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: var(--card-radius);
+            z-index: -1;
+        }
+
+        .card-profile h1, .card-profile h2, .card-profile p, .card-profile h3, .social-links a {
+            color: var(--color-card-bg) !important;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
         .card-location { grid-column: span 1; grid-row: span 1; }
         .card-reflection { grid-column: span 1; grid-row: span 1; } 
         .card-subjects { grid-column: span 1; grid-row: span 1; }
         .card-case-study { grid-column: span 2; }
         .card-hobby { grid-column: span 1; }
         .card-playlist { grid-column: span 4; }
-        
-        /* --- Specific Content Styling --- */
-        
-        /* Profile Details */
-        .profile-details h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 4px;
-            color: var(--color-text-primary);
-        }
-        
-        .profile-details h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--color-accent);
-            margin-bottom: 20px;
-        }
 
-        .tagline {
-            font-style: italic;
-            font-weight: 500;
-            color: var(--color-text-primary);
-            margin-top: 10px;
-        }
-
-        .social-links a {
-            color: var(--color-text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            margin-right: 15px;
-            transition: color 0.2s;
-        }
-
-        .social-links a:hover {
-            color: var(--color-accent);
-            text-decoration: underline;
-        }
-        
-        /* Subjects List */
-        .subjects-list {
-            list-style: none;
-            padding: 0;
+        /* Case Study Layout with Button Column */
+        .case-study-content {
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
-        .subjects-list li {
-            background-color: var(--color-background);
-            color: var(--color-text-primary);
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid var(--color-accent); 
-            transition: background-color 0.2s;
-        }
-
-        .subjects-list li:hover {
-            background-color: var(--color-accent);
-            color: var(--color-card-bg);
-        }
-
-        /* Location Card */
-        .location-details {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            height: 100%;
-        }
-        
-        .location-details .campus {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--color-accent);
-            margin-bottom: 4px;
-        }
-        
-        .location-details .time {
-            font-size: 1.1rem;
-            color: var(--color-text-secondary);
-        }
-        
-        /* Hobby Card */
-        .hobby-detail {
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--color-text-primary);
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        /* Reflection Card specific styling */
-        .card-reflection {
+        .case-study-text {
+            flex: 1;
+        }
+
+        .case-study-action {
+            flex: 0 0 auto;
+        }
+
+        .btn-app {
+            display: inline-block;
+            padding: 12px 20px;
             background-color: var(--color-accent);
-            color: var(--color-card-bg);
+            color: #ffffff !important;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
         }
-        .card-reflection h3 {
-            color: #ffcc00; /* Contrasting yellow for title */
+
+        .btn-app:hover {
+            background-color: #005f91;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-        .card-reflection p {
-            color: var(--color-card-bg);
-            font-weight: 300;
-        }
+
+        /* Profile, Subjects, etc. */
+        .profile-details h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 4px; }
+        .profile-details h2 { font-size: 1.5rem; font-weight: 400; color: #ffcc00 !important; margin-bottom: 20px; }
+        .social-links a { text-decoration: none; font-weight: 500; margin-right: 15px; }
         
-        /* --- Mobile Responsiveness (Stacked Vertically) --- */
+        .subjects-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+        .subjects-list li { background-color: var(--color-background); padding: 6px 12px; border-radius: 6px; font-size: 0.9rem; border: 1px solid var(--color-accent); transition: 0.2s; }
+        .subjects-list li:hover { background-color: var(--color-accent); color: var(--color-card-bg); }
+
+        .location-details { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; }
+        .location-details .campus { font-size: 1.5rem; font-weight: 700; color: var(--color-accent); }
+
+        .card-reflection { background-color: var(--color-accent); color: var(--color-card-bg); }
+        .card-reflection h3 { color: #ffcc00; }
+        .card-reflection p { color: var(--color-card-bg); font-weight: 300; }
+
         @media (max-width: 768px) {
-            .bento-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .card-profile, 
-            .card-location, 
-            .card-subjects, 
-            .card-case-study, 
-            .card-hobby, 
-            .card-playlist,
-            .card-reflection {
-                grid-column: span 1;
-                grid-row: auto;
-            }
-            
-            .card {
-                padding: 20px;
-            }
-            
-            .profile-details h1 {
-                font-size: 2rem;
-            }
-            
-            .profile-details h2 {
-                font-size: 1.2rem;
-            }
+            .bento-grid { grid-template-columns: 1fr; }
+            .card-profile, .card-case-study, .card-playlist { grid-column: span 1; }
+            .case-study-content { flex-direction: column; align-items: flex-start; }
         }
-
     </style>
 </head>
 <body>
@@ -280,11 +179,9 @@
             <h2>Food Science, Year 1</h2>
             <p class="tagline">'Innovating food safety.'</p>
         </div>
-        
         <div class="social-links">
             <h3>Social Links</h3>
-            <a href="https://www.linkedin.com”
- target="_blank">LinkedIn</a>
+            <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
             <a href="https://github.com/S79556" target="_blank">GitHub</a>
             <a href="#" target="_blank">UMT Portal</a>
         </div>
@@ -293,13 +190,13 @@
     <div class="card card-location">
         <div class="location-details">
             <p class="campus">UMT, Kuala Nerus</p>
-            <p class="time">Sunday, December 14, 2025 at 3:28 PM +08</p>
+            <p class="time">Sunday, Dec 21, 2025</p>
         </div>
     </div>
     
     <div class="card card-reflection">
-        <h3>Why Food Tech Matters in Malaysia</h3>
-        <p>Sustainable food security is crucial for our future. By optimizing local processing methods, we can reduce waste and improve nutrition.</p>
+        <h3>Why Food Tech Matters</h3>
+        <p>Sustainable food security is crucial for our future. By optimizing local processing, we reduce waste.</p>
     </div>
 
     <div class="card card-subjects">
@@ -313,19 +210,26 @@
     </div>
     
     <div class="card card-case-study">
-        <h3>Current Case Study</h3>
-        <p style="font-weight: 600; color: var(--color-text-primary);">Starch Gelatinization in Local Kuih</p>
-        <p>Analyzing texture profiles of Kuih Lapis.</p>
+        <div class="case-study-content">
+            <div class="case-study-text">
+                <h3>Current Case Study</h3>
+                <p style="font-weight: 600; color: var(--color-text-primary);">Starch Gelatinization in Local Kuih</p>
+                <p>Analyzing texture profiles of Kuih Lapis.</p>
+            </div>
+            <div class="case-study-action">
+                <a href="https://s79556.github.io/lab-timer-app/" target="_blank" class="btn-app">Try My Lab Timer App</a>
+            </div>
+        </div>
     </div>
     
     <div class="card card-hobby">
         <h3>Campus Activity</h3>
-        <p class="hobby-detail">Evening walks at Pantai UMT.</p>
+        <p style="font-style: italic;">Evening walks at Pantai UMT.</p>
     </div>
 
     <div class="card card-playlist">
         <h3>Study Flow Playlist</h3>
-        <p><iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4iZ4pt7kvcaH6Yo8UoZ4s2?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>.</p>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZeKHA6V9vES" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
 
 </div>
